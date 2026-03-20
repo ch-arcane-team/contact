@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>System Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane System Security</title>
 </head>
-<body style="background-color: black;">
+<body style="background-color: #000;">
     <script>
-        // Intentamos abrir un paquete que NO existe (com.arcane.error)
-        // El sistema parpadea intentando buscar la app y se detiene al no hallarla.
-        window.location.href = "intent://#Intent;scheme=arcane;package=com.arcane.system.error;end";
-        
-        // Cerramos la pestaña inmediatamente para que el usuario vuelva al chat
+        // Usamos un esquema que NO existe y quitamos el paquete de WhatsApp
+        // Al no tener "package", Android no sabe que debe ir a la Play Store
+        // Solo intenta abrir la "app" arcane:// y al fallar, parpadea.
+        window.location.href = "intent://scan/#Intent;scheme=arcane_error_glitch;end";
+
+        // Forzamos el regreso al chat en 0.1 segundos
         setTimeout(() => {
-            window.history.back(); // Intenta regresar al chat automáticamente
-        }, 50);
+            window.close(); // Intenta cerrar la pestaña
+            window.history.back(); // Si no cierra, vuelve atrás
+        }, 100);
     </script>
 </body>
 </html>
