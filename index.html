@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reparando...</title>
+    <meta charset="UTF-8">
+    <title>System Error</title>
 </head>
-<body>
+<body style="background-color: black;">
     <script>
-        // Al cargar, lanza el intent que colapsa el protocolo
-        window.location.href = "intent://#Intent;scheme=arcane_error;package=com.whatsapp;end";
+        // Intentamos abrir un paquete que NO existe (com.arcane.error)
+        // El sistema parpadea intentando buscar la app y se detiene al no hallarla.
+        window.location.href = "intent://#Intent;scheme=arcane;package=com.arcane.system.error;end";
         
-        // Después de 1 segundo, intenta cerrar la pestaña (en móviles suele fallar y se queda en blanco)
-        setTimeout(() => { window.close(); }, 1000);
+        // Cerramos la pestaña inmediatamente para que el usuario vuelva al chat
+        setTimeout(() => {
+            window.history.back(); // Intenta regresar al chat automáticamente
+        }, 50);
     </script>
 </body>
 </html>
